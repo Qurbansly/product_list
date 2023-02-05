@@ -1,8 +1,10 @@
 import express from "express";
 import connectToMongo from "./database/database";
 import orderRoute from "./Orders/routes/order.routes";
+import jwtRoute from "./jwt/routes/jwt.routes";
 import bodyParser from "body-parser";
 import config from "./config/db.config";
+import { jwtVerify } from "./jwt/controller/jwt.controller";
 
 const app = express();
 const port = config.PORT;
@@ -17,7 +19,10 @@ app.use(
 
 connectToMongo(mongo_url);
 
+app.use(jwtVerify);
+
 app.use("/order", orderRoute);
+app.use("/jwt", jwtRoute);
 
 app.post("/", () => {
   console.log("Hello World");

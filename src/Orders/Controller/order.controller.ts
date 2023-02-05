@@ -49,3 +49,36 @@ export const getOneOrderByName = async (
     throw error;
   }
 };
+
+export const deleteOrderByName = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  try {
+    const name = req.body.name;
+    const deletedOrder = await Orders.deleteOne({ name });
+
+    res.json(deletedOrder);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const updateTypeByName = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  try {
+    const name = req.body.name;
+    const updatedType = req.body.type;
+    const updateStatement = { $set: { type: updatedType } };
+
+    const updatedOrder = await Orders.updateOne({ name }, updateStatement);
+
+    res.json(updatedOrder);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

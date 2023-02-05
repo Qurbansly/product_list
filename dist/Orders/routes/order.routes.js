@@ -9,5 +9,7 @@ const orderRoute = express_1.default.Router();
 orderRoute.get("/get", order_controller_1.fetchAllOrders);
 orderRoute.post("/sendName", order_controller_1.getOneOrderByName);
 orderRoute.post("/createOrder", order_controller_1.createNewOrder);
+orderRoute.delete("/deleteOrder", order_controller_1.deleteOrderByName);
+orderRoute.put("/updateOrder", order_controller_1.updateTypeByName);
 exports.default = orderRoute;
 //# sourceMappingURL=order.routes.js.map
